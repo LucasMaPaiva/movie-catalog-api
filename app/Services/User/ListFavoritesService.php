@@ -12,10 +12,9 @@ class ListFavoritesService
 
     /**
      * @param int $id
-     * @param int $movie_id
      * @return mixed
      */
-    public function execute(int $id, int $movie_id)
+    public function execute(int $id)
     {
        return app(FavoritesRepository::class)->listFavoritesByUserId($id);
     }
