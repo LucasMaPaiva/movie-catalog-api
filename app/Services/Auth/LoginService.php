@@ -17,11 +17,11 @@ class LoginService
     public function execute(array $data)
     {
         $user = app(FindUserByCpfService::class)->execute(
-            cpf: $data->email,
+            email: $data['email'],
         );
 
         $this->checkIfCanAccess(
-            password: $data->password,
+            password: $data['password'],
             user: $user
         );
 
