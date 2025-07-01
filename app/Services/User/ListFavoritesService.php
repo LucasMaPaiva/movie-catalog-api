@@ -16,6 +16,9 @@ class ListFavoritesService
      */
     public function execute(int $id)
     {
-       return app(FavoritesRepository::class)->listFavoritesByUserId($id);
+        $genreIds = request()->query('genre_ids');
+        $genreIdsArray = collect(explode(',', $genreIds))->map(fn($id) => (int) trim($id))->filter()->toArray();
+
+       return app(FavoritesRepository::class)->listFavoritesByUserId($id, $genreIdsArray);
     }
 }
