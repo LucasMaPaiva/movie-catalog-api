@@ -18,9 +18,10 @@ class FavoritesRepository extends BaseRepository
 
     /**
      * @param int $id
-     * @return mixed
+     * @param $genreIdsArray
+     * @return array|mixed
      */
-    public function listFavoritesByUserId(int $id)
+    public function listFavoritesByUserId(int $id, $genreIdsArray)
     {
         $result = DB::selectOne("
         SELECT JSON_ARRAYAGG(
@@ -37,7 +38,19 @@ class FavoritesRepository extends BaseRepository
         WHERE user_id = ?
     ", [$id]);
 
-        return json_decode($result->favorites, true);
+        $favorites = json_decode($result->favorites, true) ?? [];
+
+        if (!empty($genreIdsArray)) {
+            $favorites = array_filter($favorites, function ($fav) use ($genreIdsArray) {
+                $movieDetails = json_decode(json_encode($fav['movie_details']), true);
+                $movieGenreIds = $movieDetails['genre_ids'] ?? [];
+
+                return count(array_intersect($genreIdsArray, $movieGenreIds)) > 0;
+            });
+
+            $favorites = array_values($favorites);
+        }
+        return $favorites;
     }
 
     /**
