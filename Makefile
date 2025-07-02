@@ -132,7 +132,7 @@ test:
 	@docker compose -f ${DOCKER_COMPOSE_FILE} exec ${DOCKER_SERVICE_PHP_FPM} php artisan test
 
 install: ## Instala a aplicação executando todos os passos necessários
-	echo "VESTMENTOR install"
+	echo "MOVIE CATALOG install"
 	make build
 	make up
 	make delete-node_modules
@@ -143,7 +143,7 @@ install: ## Instala a aplicação executando todos os passos necessários
 
 ## Configuração de deploy
 deploy:
-	echo "VESTMENTOR DEPLOY!"
+	echo "MOVIE CATALOG DEPLOY!"
 	make define-environment
 	make clear
 	make down
