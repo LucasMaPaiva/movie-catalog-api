@@ -45,6 +45,8 @@ O **Cine Art** oferece um conjunto de funcionalidades voltadas à experiência d
 
 Siga os passos abaixo para iniciar a aplicação em seu ambiente de desenvolvimento local:
 
+### Para instalar com Linux
+
 ### 1. Clonar o Repositório
 
 ```bash
@@ -89,6 +91,22 @@ Execute o comando:
 
 make migrate
 ```
+---
+### Para instalar com Windows
+
+Para facilitar a instalação recomendo instalar o make no windows que pode ser feito tanto pelo chocolatey quanto pelo git bash
+
+`https://chocolatey.org/install`
+
+Depois de instalar o chocolatey você pode instalar o make assim 
+
+```bash
+
+choco install make
+```
+
+Depois de instalado apenas utilizar os comandos que estão acima
+
 ---
 
 ## 📡 Documentação da API
