@@ -22,7 +22,7 @@ class AuthController extends BaseController
         try {
             return self::successResponse(
                 data: $registerService->execute($data->validated()),
-                message: 'Login realizado com sucesso!'
+                message: 'Cadastro realizado com sucesso!'
             );
         } catch (Exception $exception) {
             return self::returnError($exception);
