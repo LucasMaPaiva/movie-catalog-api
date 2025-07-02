@@ -2,6 +2,8 @@
 
 Este repositório contém o código-fonte da aplicação **Cine Art**, um catálogo de filmes interativo que permite aos usuários explorar, pesquisar e gerenciar suas coleções de filmes favoritos. A aplicação é composta por um **backend robusto em Laravel** e um **frontend dinâmico em Vue.js**.
 
+Link do repositório do front
+https://github.com/LucasMaPaiva/movie-catalog-front
 ---
 
 ## ✨ Visão Geral do Projeto e Funcionalidades
@@ -47,8 +49,8 @@ Siga os passos abaixo para iniciar a aplicação em seu ambiente de desenvolvime
 
 ```bash
 
-git clone https://github.com/seu-usuario/cine-art.git
-cd cine-art
+git clone git@github.com:LucasMaPaiva/movie-catalog-api.git
+cd movie-catalog-api
 ```
 
 ### 2. Configurar Variáveis de Ambiente
