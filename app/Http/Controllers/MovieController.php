@@ -6,8 +6,6 @@ use App\Base\Http\Controllers\BaseController;
 use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http;
-use PhpParser\Node\Stmt\TryCatch;
 use Symfony\Component\HttpFoundation\Response;
 
 class MovieController extends BaseController
@@ -18,7 +16,7 @@ class MovieController extends BaseController
      * @param Request $request
      * @return JsonResponse
      */
-    public function showPopular(Request $request)
+    public function showPopular(Request $request): JsonResponse
     {
         try {
 
@@ -34,12 +32,11 @@ class MovieController extends BaseController
      * @param Request $request
      * @return JsonResponse
      */
-    public function showTopRated(Request $request)
+    public function showTopRated(Request $request): JsonResponse
     {
         {
             try {
-                $response = $this->fetchFromApi($request, 'movie/top_rated');
-                return response()->json($response->json());
+                return response()->json(($this->fetchFromApi($request, 'movie/top_rated'))->json());
             } catch (ConnectionException $connectionException) {
                 return response()->json(['error' => 'Erro ao acessar a API'], Response::HTTP_INTERNAL_SERVER_ERROR);
             }
@@ -50,12 +47,10 @@ class MovieController extends BaseController
      * @param Request $request
      * @return JsonResponse
      */
-    public function searchMovie(Request $request)
+    public function searchMovie(Request $request): JsonResponse
     {
         try {
-            $response = $this->fetchFromApi($request, 'search/movie');
-
-            return response()->json($response->json());
+            return response()->json(($this->fetchFromApi($request, 'search/movie'))->json());
         } catch (ConnectionException $connectionException) {
             return response()->json(['error' => 'Erro ao acessar a API'], Response::HTTP_INTERNAL_SERVER_ERROR);
         }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\GenreController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -25,4 +26,5 @@ Route::prefix('v1')->group(function () {
         Route::post('remove-favorite', [UserController::class, 'removeFavorite'])->name('movies.remove_favorite');
     });
 
+    Route::get('genres', GenreController::class)->name('movies.genres');
 });
