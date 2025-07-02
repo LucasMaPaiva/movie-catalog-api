@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Base\Http\Controllers\BaseController;
+use App\Http\Requests\User\RemoveFavoriteRequest;
 use App\Http\Requests\User\UserFavoriteRequest;
 use App\Services\User\ListFavoritesService;
 use App\Services\User\RemoveFavoriteService;
@@ -23,9 +24,9 @@ class UserController extends BaseController
      * @param int $id
      * @param UserFavoriteRequest $data
      * @param UserFavoriteService $userFavoriteService
-     * @return JsonResponse|Response
+     * @return JsonResponse
      */
-    public function favoriteMovie(int $id, UserFavoriteRequest $data, UserFavoriteService $userFavoriteService)
+    public function favoriteMovie(int $id, UserFavoriteRequest $data, UserFavoriteService $userFavoriteService): JsonResponse
     {
         try {
             return self::successResponse(
@@ -40,7 +41,7 @@ class UserController extends BaseController
     /**
      * @param int $id
      * @param ListFavoritesService $listFavoritesService
-     * @return JsonResponse|Response
+     * @return JsonResponse
      */
     public function listFavorite(int $id, ListFavoritesService $listFavoritesService)
     {
@@ -56,18 +57,14 @@ class UserController extends BaseController
     /**
      * @param int $id
      * @param RemoveFavoriteService $removeFavoriteService
-     * @param Request $request
-     * @return JsonResponse|string
+     * @param RemoveFavoriteRequest $data
+     * @return JsonResponse
      */
-    public function removeFavorite(int $id, RemoveFavoriteService $removeFavoriteService, Request $request)
+    public function removeFavorite(int $id, RemoveFavoriteService $removeFavoriteService, RemoveFavoriteRequest $data): JsonResponse
     {
         try {
-            $data = $request->validate([
-                'movie_id' => 'required|integer'
-            ]);
-
+            $removeFavoriteService->execute($id, $data->validated()['movie_id']);
             return self::successResponse(
-                data: $removeFavoriteService->execute($id, (int) $data['movie_id']),
                 message: 'Filme removido como favorito',
             );
         } catch (Exception $exception) {
